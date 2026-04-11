@@ -212,7 +212,7 @@ const AddCar = () => {
             className="px-3 py-2 mt-1 border border-borderColor rounded-md outline-none"
           >
             <option value="">Select location</option>
-            <option value="padur"><Padur></Padur></option>
+            <option value="padur">Padur</option>
             <option value="semmancheri">Semmancheri</option>
             <option value="sholingnallur">Sholinganallur</option>
             <option value="adyar">Adyar</option>
