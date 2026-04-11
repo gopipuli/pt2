@@ -35,14 +35,20 @@ export const AppProvider = ({ children }) => {
   };
 
   // fetch cars
-  const fetchCars = async () => {
-    try {
-      const { data } = await axios.get("/api/user/cars");
-      data.success ? setCars(data.cars) : toast.error(data.message);
-    } catch (error) {
-      toast.error(error?.response?.data?.message || error.message);
+ const fetchCars = async () => {
+  try {
+    const { data } = await axios.get("/api/cars");
+
+    if (data.success) {
+      setCars(data.cars);
+    } else {
+      toast.error(data.message);
     }
-  };
+
+  } catch (error) {
+    toast.error(error?.response?.data?.message || error.message);
+  }
+};
 
   // logout
   const logout = () => {
