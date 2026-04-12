@@ -14,23 +14,30 @@ export const AppProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
   const [isOwner, setIsOwner] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true); // ✅ NEW
   const [showLogin, setShowLogin] = useState(false);
   const [pickupDate, setPickupDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [cars, setCars] = useState([]);
 
-  // fetch user
+  // ✅ fetch user
   const fetchUser = async () => {
     try {
       const { data } = await axios.get("/api/user/data");
+
       if (data.success) {
         setUser(data.user);
         setIsOwner(data.user.role === "owner");
       } else {
-        navigate("/");
+        setUser(null);
+        setIsOwner(false);
       }
     } catch (error) {
+      setUser(null);
+      setIsOwner(false);
       toast.error(error?.response?.data?.message || error.message);
+    } finally {
+      setAuthLoading(false); // ✅ IMPORTANT
     }
   };
 
@@ -54,15 +61,19 @@ export const AppProvider = ({ children }) => {
     toast.success("You have been logged out");
   };
 
-  // get token (ONLY set token here)
+  // get token
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
+
     if (storedToken) {
       setToken(storedToken);
+    } else {
+      setAuthLoading(false); // ✅ no token → stop loading
+      setIsOwner(false);
     }
   }, []);
 
-  // run APIs AFTER token is available
+  // run APIs AFTER token
   useEffect(() => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -76,10 +87,11 @@ export const AppProvider = ({ children }) => {
     currency,
     axios,
     user,
-    setUser,
     token,
-    setToken,
     isOwner,
+    authLoading, // ✅ export
+    setToken,
+    setUser,
     setIsOwner,
     fetchUser,
     showLogin,
