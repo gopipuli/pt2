@@ -1,5 +1,5 @@
  import React, { useEffect, useState } from 'react'
-import { assets, dummyCarData } from '../assets/assets'
+import { assets } from '../assets/assets'
 import Title from '../components/Title'
 import CarCard from '../components/CarCard'
 import { useSearchParams } from 'react-router-dom'
