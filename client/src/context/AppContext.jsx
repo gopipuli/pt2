@@ -43,13 +43,17 @@ export const AppProvider = ({ children }) => {
 
   // fetch cars
   const fetchCars = async () => {
-    try {
-      const { data } = await axios.get("/api/user/cars");
-      data.success ? setCars(data.cars) : toast.error(data.message);
-    } catch (error) {
-      toast.error(error?.response?.data?.message || error.message);
+  try {
+    const { data } = await axios.get("/api/cars"); // ✅ FIXED
+    if (data.success) {
+      setCars(data.cars);
+    } else {
+      toast.error(data.message);
     }
-  };
+  } catch (error) {
+    toast.error(error?.response?.data?.message || error.message);
+  }
+};
 
   // logout
   const logout = () => {
@@ -75,12 +79,15 @@ export const AppProvider = ({ children }) => {
 
   // run APIs AFTER token
   useEffect(() => {
-    if (token) {
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      fetchUser();
-      fetchCars();
-    }
-  }, [token]);
+  fetchCars(); // ✅ always fetch cars
+}, []);
+
+useEffect(() => {
+  if (token) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    fetchUser();
+  }
+}, [token]);
 
   const value = {
     navigate,
