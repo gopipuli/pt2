@@ -79,15 +79,12 @@ export const AppProvider = ({ children }) => {
 
   // run APIs AFTER token
   useEffect(() => {
-  fetchCars(); // ✅ always fetch cars
-}, []);
-
-useEffect(() => {
-  if (token) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    fetchUser();
-  }
-}, [token]);
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      fetchUser();
+      fetchCars();
+    }
+  }, [token]);
 
   const value = {
     navigate,
