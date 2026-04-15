@@ -11,6 +11,7 @@ const Banner = () => {
 
   const handleListCar = () => {
     if (!token) {
+       toast.error("Please login first");
       navigate('/') // 🔴 not logged in
     } else {
       navigate('/owner/add-car') // 🟢 logged in
