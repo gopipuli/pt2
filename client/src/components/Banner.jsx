@@ -13,7 +13,7 @@ const Banner = () => {
     if (!token) {
       navigate('/login') // 🔴 not logged in
     } else {
-      navigate('/admin/add-car') // 🟢 logged in
+      navigate('/admin/owner/add-car') // 🟢 logged in
     }
   }
 
