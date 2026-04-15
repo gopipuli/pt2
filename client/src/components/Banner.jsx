@@ -11,7 +11,7 @@ const Banner = () => {
 
   const handleListCar = () => {
     if (!token) {
-      navigate('/login') // 🔴 not logged in
+      navigate('/#') // 🔴 not logged in
     } else {
       navigate('/admin/owner/add-car') // 🟢 logged in
     }
