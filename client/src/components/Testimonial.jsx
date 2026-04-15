@@ -8,20 +8,20 @@ const Testimonial = () => {
   const testimonials = [
   { 
     name: "Arjun Kumar",
-    address: "Barcelona, Spain", 
+    address: "Padur, chennai", 
     image: "https://randomuser.me/api/portraits/men/32.jpg", // ✅ male image
     review: "I've rented cars from various companies, but the experience with CarRental was exceptional."
 
   },
   { 
     name: "Manasa",
-    address: "New York, USA", 
+    address: "Semmancheri, chennai", 
     image: assets.testimonial_image_2,
     review: "CarRental made my trip so much easier. The car was delivered right to my door, and the customer service was fantastic!"
   },
   { 
     name: "Pavani",
-    address: "Seoul, South Korea",
+    address: "Adyar, chennai",
     image: "https://randomuser.me/api/portraits/women/3.jpg" ,
     review: "I highly recommend CarRental! Their fleet is amazing, and I always feel like I'm getting the best deal with excellent service."
   }
