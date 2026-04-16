@@ -61,9 +61,7 @@ const Login = () => {
                     <input type="password" name="password" placeholder="Password" className="border-none outline-none ring-0" value={formData.password} onChange={handleChange} required />
                 </div>
 
-                <div className="mt-4 text-left text-indigo-500">
-                    <button className="text-sm" type="reset">Forget password?</button>
-                </div>
+                
 
                 <button type="submit" className="mt-2 w-full h-11 rounded-full text-white bg-[var(--color-primary)] active:scale-95 transition bg-500 rounded text-white shadow-lg shadow-blue-500/30 text-sm font-medium">
                     {state === "login" ? "Login" : "Sign up"}
