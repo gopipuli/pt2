@@ -31,31 +31,37 @@ const Sidebar = () => {
     <div className='min-h-screen w-64 border-r flex flex-col items-center pt-8 text-sm'>
 
       {/* Profile Image */}
-      <div className='relative group'>
-        <label htmlFor="image">
-          <img
-            src={
-              image
-                ? URL.createObjectURL(image)
-                : user?.image ||
-                  "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=300"
-            }
-            alt="profile"
-            className='w-20 h-20 rounded-full object-cover cursor-pointer'
-          />
-          <input
-            type="file"
-            id="image"
-            hidden
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-          />
-
-          <div className='absolute inset-0 hidden group-hover:flex items-center justify-center bg-black/20 rounded-full'>
-            <img src={assets.edit_icon} alt="edit" className='w-5' />
-          </div>
-        </label>
+<div className="relative group">
+  <label htmlFor="image">
+    {image || user?.image ? (
+      <img
+        src={
+          image
+            ? URL.createObjectURL(image)
+            : user?.image
+        }
+        alt="profile"
+        className="w-20 h-20 rounded-full object-cover cursor-pointer"
+      />
+    ) : (
+      <div className="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer">
+        <span className="text-gray-400 text-xs">Add</span>
       </div>
+    )}
+
+    <input
+      type="file"
+      id="image"
+      hidden
+      accept="image/*"
+      onChange={(e) => setImage(e.target.files[0])}
+    />
+
+    <div className="absolute inset-0 hidden group-hover:flex items-center justify-center bg-black/20 rounded-full">
+      <img src={assets.edit_icon} alt="edit" className="w-5" />
+    </div>
+  </label>
+</div>
 
       {/* Save Button */}
       {image && (
