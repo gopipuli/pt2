@@ -45,7 +45,9 @@ const Sidebar = () => {
       />
     ) : (
       <div className="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center cursor-pointer">
-        <span className="text-gray-400 text-xs">Add</span>
+        <span className="text-gray-400 text-xs">
+          <img src={assets.users_icon} alt="" />
+        </span>
       </div>
     )}
 
